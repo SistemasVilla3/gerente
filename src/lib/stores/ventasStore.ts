@@ -35,10 +35,10 @@ function stopAutoRefresh() {
     _interval = null;
 }
 
-//Mapa por IdVendedor para acceso
+//Mapa por SapID para acceso directo
 const byId: Readable<Record<number, VendedorData>> = derived(state, ($s) => {
     const map: Record<number, VendedorData> = {};
-    for (const r of $s.rows) map[r.vendedor.IdVendedor] = r;
+    for (const r of $s.rows) map[r.vendedor.SapID] = r;
     return map;
 });
 

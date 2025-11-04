@@ -62,11 +62,11 @@
 <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
     <div class="px-4 pt-3 text-sm text-gray-600 flex items-center gap-2">
         {#if loading}
-        <span>Cargando vendedores…</span>
+            <span>Cargando vendedores…</span>
         {:else if error}
-        <span class="text-red-600">Error: {error}</span>
+            <span class="text-red-600">Error: {error}</span>
         {:else}
-        <span class="ml-auto text-gray-500">Mostrando {rows.length} de {seller.length}</span>
+            <span class="ml-auto text-gray-500">Mostrando {rows.length} de {seller.length}</span>
         {/if}
     </div>
 
@@ -94,7 +94,7 @@
 
                         <td class="px-3 py-4 text-center font-exo font-semibold whitespace-nowrap text-gray-900">
                             {#if r.meta}
-                                {formatNumber(r.meta?.MontoDeMeta ?? 0)}
+                                ${formatNumber(r.meta?.MontoDeMeta ?? 0)}
                             {:else}
                                 <em>0.00</em>
                             {/if}
@@ -105,7 +105,7 @@
                                 {#if (r.progreso?.MontoProgreso ?? 0) === 0}
                                     <em>0.00</em>
                                 {:else}
-                                    {formatNumber(r.progreso?.MontoProgreso ?? 0)}
+                                    ${formatNumber(r.progreso?.MontoProgreso ?? 0)}
                                 {/if}
                             {:else}
                                 <em>0.00</em>
@@ -125,11 +125,11 @@
                         </td>
 
                         <td class="px-3 py-4 text-center font-exo font-semibold whitespace-nowrap text-gray-900">
-                            {formatNumber(r.comisiones?.ComisionContado ?? 0)}
+                            ${formatNumber(r.comisiones?.ComisionContado ?? 0)}
                         </td>
 
                         <td class="px-3 py-4 text-center font-exo font-semibold whitespace-nowrap text-gray-900">
-                            {formatNumber(r.comisiones?.ComisionCredito ?? 0)}
+                            ${formatNumber(r.comisiones?.ComisionCredito ?? 0)}
                         </td>
 
                         <td class="px-3 py-4 text-center font-exo font-semibold whitespace-nowrap text-gray-900">
@@ -137,7 +137,7 @@
                         </td>
 
                         <td class="px-4 py-4 text-center font-exo font-semibold whitespace-nowrap text-gray-900">
-                            {formatNumber(r.comisionTotal ?? 0)}
+                            ${formatNumber(r.comisionTotal ?? 0)}
                         </td>
                     </tr>
                 {/each}

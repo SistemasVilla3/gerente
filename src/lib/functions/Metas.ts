@@ -54,7 +54,6 @@ export async function fetchMetasVend(id: number): Promise<Meta | null> {
             }
             throw new Error(`Error al cargar las metas del vendedor ${id}: ${res.statusText}`);
         }
-        console.log(`Meta para vendedor ${id} encontrada`);
         return await res.json();
     } catch (error) {
        // console.error(`Error al obtener las metas del vendedor: ${id}`, error);
@@ -69,7 +68,6 @@ export async function fetchProgre(id: number): Promise<Progreso | null> {
         //console.error("Backend respondio", res.statusText);
         throw new Error("Error al cargar las metas");
     }
-    console.log(`Progreso para vendedor ${id} encontrado`);
     const data = await res.json();
     return data;
 }
