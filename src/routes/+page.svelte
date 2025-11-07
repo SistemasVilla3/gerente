@@ -4,6 +4,8 @@
     import ButtonPanel from "./components/ButtonPanel.svelte";
     import FilterPanel from "./components/FilterPanel.svelte";
     import type { Vendedor } from "$lib/functions/vendedores";
+    import { onMount } from "svelte";
+    import { roleName } from "$lib/functions/AuthStore";
 
     let selectedVendedor: Vendedor | null = null;
     let query = "";
@@ -11,6 +13,26 @@
     function handleSelect(v: Vendedor) {
         selectedVendedor = v;
     }
+
+    onMount(() => {
+        let redirected = false;
+        const unsubscribe = roleName.subscribe((value) => {
+            if (redirected || !value) return;
+            const allowedRoles = ["ADMINISTRADOR", "GERENTE DE VENTAS"];
+            if (!allowedRoles.includes(value) && typeof window !== "undefined") {
+                redirected = true;
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else if (document.referrer) {
+                    window.location.assign(document.referrer);
+                } else {
+                    window.location.assign("/");
+                }
+            }
+        });
+
+        return () => unsubscribe();
+    });
 
     let nombre = "Ventas por mes";
 </script>

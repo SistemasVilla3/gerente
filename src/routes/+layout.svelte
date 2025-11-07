@@ -1,12 +1,20 @@
 <script lang="ts">
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
-	
+
+	import { jwtToken } from '$lib/functions/AuthStore';
+	import { afterNavigate } from '$app/navigation';
+
 	let { children } = $props();
+
+	if (import.meta.env.BROWSER) {
+		jwtToken.syncFromUrl();
+	}
+
+	afterNavigate (() => {
+		jwtToken.syncFromUrl();
+	});
+
+	export const prerender = true;
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
-
-{@render children?.()}
+{@render children()}
