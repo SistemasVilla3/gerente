@@ -66,8 +66,6 @@
             <span>Cargando vendedores…</span>
         {:else if error}
             <span class="text-red-600">Error: {error}</span>
-        {:else}
-            <span class="ml-auto text-gray-500">Mostrando {rows.length} de {seller.length}</span>
         {/if}
     </div>
 
@@ -85,22 +83,19 @@
             Sucursal
           </th>
           <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
-            Num. facturas
+            Num. facturas contado
           </th>
           <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
-            Facturas
-          </th>
-          <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
-            Desc. facturas
+            Monto de facturas
           </th>
           <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
             Devoluciones
           </th>
           <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
-            Monto fact. ant.
+            Num. facturas credito
           </th>
           <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
-            Monto fact. pago0
+            Facturas de credito pagadas
           </th>
           <th class="px-6 py-3 font-exo font-black text-center text-sm text-white-900 tracking-wider">
             Desc. por NC
@@ -124,22 +119,19 @@
               {sell.vendedor.SucursalID ?? "-"}
             </td>
             <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
-              {sell.entregas?.totalTicketsVendidos ?? 0}
+              {(sell.contado?.totalFacturas ?? 0)}
             </td>
             <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
-              ${formatNumber(sell.entregas?.totalGeneralPagado ?? 0)}
-            </td>
-            <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
-              {formatNumber(0)}
+              ${formatNumber((sell.contado?.totalGeneral ?? 0))}
             </td>
             <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
               {sell.devoluciones?.totalDocumentos ?? 0}
             </td>
             <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
-              {formatNumber(0)}
+              {(sell.credito?.totalFacturas ?? 0)}
             </td>
             <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
-              {formatNumber(0)}
+              ${formatNumber((sell.credito?.totalGeneral ?? 0))}
             </td>
             <td class="py-2 px-4 text-lg text-center font-exo font-semibold text-gray-900">
               -{formatNumber(sell.notas?.totalMonto ?? 0)}

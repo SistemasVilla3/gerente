@@ -29,7 +29,7 @@
         return () => unsub();
     });
 
-    //Cargar inicial
+    //Cargar inicial y refresco periodico
     $effect.root(() => {
         ventasState.refresh();
         ventasState.startAutoRefresh(150_000);
